@@ -73,7 +73,7 @@ class cell:
 class ind:
     """This class represents individuals in our population."""
     
-    def __init__(self,myLandscape,myCell,name="",rowPos=0,colPos=0,disProb=0.1):
+    def __init__(self,myLandscape,myCell,name="",rowPos=0,colPos=0,disProb=0.5):
         self.myLandscape = myLandscape
         self.myCell = myCell
         self.name = name
@@ -93,6 +93,7 @@ class ind:
 
     def disperse(self):
         """Move, if necessary, to new cell. disProb is dispersal probability."""
+        
         if (nr.random() < self.disProb):
 
             # Middle cell
@@ -108,7 +109,7 @@ class ind:
                     self.colPos = self.colPos + 1
 
             # Upper left cell
-            elif (self.rowPos == 0 & self.colPos == 0):
+            elif (self.rowPos == 0) & (self.colPos == 0):
                 ranNum = nr.random()
                 if (ranNum < 0.5):
                     self.rowPos = self.rowPos + 1
@@ -128,6 +129,10 @@ class ind:
             # Bottom left cell
             elif (self.rowPos == self.myLandscape.nRows-1) & (self.colPos == 0):
                 ranNum = nr.random()
+                if (ranNum < 0.5):
+                    self.rowPos = self.rowPos - 1
+                else:
+                    self.colPos = self.colPos + 1
             
             # Bottom edge cell
             elif (self.rowPos == self.myLandscape.nRows-1) & (self.colPos > 0) & (self.colPos < self.myLandscape.nCols-1):
@@ -185,7 +190,7 @@ simLandscape = landscape()
 print("Generation 0:"); print()
 simLandscape.printLandscape()
 
-gens = 10
+gens = 20
 
 for g in range(gens):
     allIndividuals = []
