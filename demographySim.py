@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-# Simulation to model demography on a landscape. This simulation 
+# Simulation to model demography on a landscape. This simulation
 # will include:
-# - birth
-# - death
-# - dispersal
+# - Birth
+# - Death
+# - Dispersal
 
 # First Version
 # - Asexual reproduction
@@ -26,53 +26,57 @@
 
 # Each generation first disperses, then reproduces
 
-import numpy.random as nr 
+import numpy.random as nr
 
 # Class Definitions
 
+# Set up for class landscape, defining variables, setting up rows and columns, and printing landscape.
+
 class landscape:
     """This class holds all individuals across the landscape"""
-
+# Defining a method to create a grid based with number or rows, columns, and starting population size.
     def __init__(self,nRows=5,nCols=5,startSize=50):
-        """
-        Creates a new grid-based with the number of rows, columns, and 
-        starting population size specified by the user.
-        """
+        """Creates a new grid-based with the number of rows, columns, and
+	   starting population size specified by the user."""
         self.nRows = nRows
         self.nCols = nCols
         self.startSize = startSize
         self.sections = self.setup(self.nRows,self.nCols)
-        for _ in range(self.startSize):
+        for _ in range(self.startSize):	# For loop to append individuals.
             self.sections[0][0].individuals.append(ind(myLandscape=self,myCell=self.sections[0][0]))
 
 
-    def setup(self,nRows,nCols):
+    def setup(self,nRows,nCols):	# Set up for organization of grid.
         """Sets up the landscape as a list of lists containing cells."""
-        land = []
+        land = []	# Creating an empty list for landscape.
         for rowNum in range(nRows):
             row = []
-            for colNum in range(nCols):
+            for colNum in range(nCols):	# For loop that appends cell with row and column number.
                 row.append(cell(("%d_%d") % (rowNum,colNum)))
             land.append(row)
         return land
 
     def printLandscape(self):
         """Print all id numbers of cells in landscape"""
-        for row in self.sections:
+        for row in self.sections:	# For loop that shows individuals in columns and rows.
             for col in row:
                 print("%d" % (len(col.individuals)), "\t", end="")
             print("\n")
 
+# Set up for class cell, which represents one area of the landscape.
+
 class cell:
     """This class represents a grid square on our landscape."""
-
+# Cell that all individuals start in.
     def __init__(self,id):
         self.id = id
         self.individuals = []
 
+# Set up for class individual, defining variables, coming up with random number of offspring, and random disperal.
+
 class ind:
     """This class represents individuals in our population."""
-    
+
     def __init__(self,myLandscape,myCell,name="",rowPos=0,colPos=0,disProb=0.5):
         self.myLandscape = myLandscape
         self.myCell = myCell
@@ -83,7 +87,7 @@ class ind:
         self.colPos = colPos
         self.disProb = disProb
 
-    def reproduce(self):
+    def reproduce(self):	# Useing poisson to generate random number of offspring per individual.
         """Return list of offspring"""
         numOff = nr.poisson(self.meanOffNum)
         offspringList = []
@@ -91,9 +95,11 @@ class ind:
             offspringList.append(ind())
         return offspringList
 
-    def disperse(self):
+    def disperse(self):	# Gives the option of dispersing population by one cell or not move at all.
         """Move, if necessary, to new cell. disProb is dispersal probability."""
-        
+
+# If/Elif statements for random dispersal and where dispersal will occcur.
+
         if (nr.random() < self.disProb):
 
             # Middle cell
@@ -133,7 +139,7 @@ class ind:
                     self.rowPos = self.rowPos - 1
                 else:
                     self.colPos = self.colPos + 1
-            
+
             # Bottom edge cell
             elif (self.rowPos == self.myLandscape.nRows-1) & (self.colPos > 0) & (self.colPos < self.myLandscape.nCols-1):
                 ranNum = nr.random()
@@ -180,9 +186,9 @@ class ind:
                 else:
                     self.colPos = self.colPos + 1
 
-            self.myCell.individuals.remove(self)
-            self.myLandscape.sections[self.rowPos][self.colPos].individuals.append(self)
-            self.myCell = self.myLandscape.sections[self.rowPos][self.colPos]
+            self.myCell.individuals.remove(self) # Kills off previoius generation to result in one generation at a time.
+            self.myLandscape.sections[self.rowPos][self.colPos].individuals.append(self) # Adds new generation.
+            self.myCell = self.myLandscape.sections[self.rowPos][self.colPos] # Adds new generation to cell based on above.
 
 # Run demographic simulation
 
@@ -190,17 +196,18 @@ simLandscape = landscape()
 print("Generation 0:"); print()
 simLandscape.printLandscape()
 
+# Initializes number of generations to run.
 gens = 20
 
-for g in range(gens):
+for g in range(gens):	# For loop that creates empty list for each generation.
     allIndividuals = []
     for r in range(simLandscape.nRows):
-        for c in range(simLandscape.nCols):
+        for c in range(simLandscape.nCols): # For loop for each column adds individuals from landscape
             allIndividuals.extend(simLandscape.sections[r][c].individuals)
 
-    for i in allIndividuals:
+    for i in allIndividuals:	# Randomizes positions of every individual in the array allIndividuals
         i.disperse()
-
+# Prints out grid dispersal in the landscape for every generation.
     print("Generation %d:" % (g+1)); print()
 
     simLandscape.printLandscape()
