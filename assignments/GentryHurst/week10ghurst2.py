@@ -17,7 +17,7 @@ class ind:
 
         def reproduce(self):
                 self.numoffspring = nr.poisson(self.lam)
-		print(ind_1.numoffspring)
+print(ind_1.numoffspring)
 class gen:
 	"""Class for generation in our simulation."""
 	def __init__(self,gen=0):
@@ -32,9 +32,9 @@ class sim:
 	"""Class for simulation"""
 	def __init__(self):
 
-	def run(self):
+		def run(self):
 #define the value for the starting number of individuals
-		StartPop = input("Enter the start number of individuals:")
+			StartPop = input("Enter the start number of individuals:")
 
 #list to hold population size
 		popsizes = []
