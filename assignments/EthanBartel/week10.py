@@ -76,3 +76,4 @@ plt.ylabel('Number')
 plt.title('Growth rate: %s, Carrying Capacity = %d' % (r, K))
 plt.axvline(np.argmax(np.diff(num)),  color = 'k' )
 plt.show()
+
