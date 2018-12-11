@@ -58,3 +58,7 @@ plt.ylabel('Growth (individuals)')
 plt.title("Growth rate of a population")
 plt.axvline(np.argmax(np.diff(num)), color = 'k' )
 plt.show()
+
+# DB: This is a good attempt, although mostly the variables are just reassigned outside 
+#     the object. I realize now that this was a lot to ask right after we just
+#     started covering objects. Hopefully the later assignments helped.
