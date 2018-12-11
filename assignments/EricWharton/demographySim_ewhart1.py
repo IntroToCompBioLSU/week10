@@ -216,3 +216,7 @@ for g in range(gens):
     # prints each landscape (grid system) for each generation (i.e, 20 times)
 
     simLandscape.printLandscape()
+
+# DB: Your comments are good and get at the overall structure of the code, but it would be
+#     helpful to have more detail. 
+
