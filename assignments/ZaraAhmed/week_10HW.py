@@ -54,3 +54,7 @@ class sim:
         plt.axvline(numpy.argmax(numpy.diff(num)), color = 'k' )
         plt.show()
 run()
+
+# DB: This is a good attempt, although mostly the variables are just reassigned outside 
+#     the object. I realize now that this was a lot to ask right after we just
+#     started covering objects. Hopefully the later assignments helped.

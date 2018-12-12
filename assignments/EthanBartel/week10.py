@@ -3,6 +3,7 @@
 import numpy as np
 import numpy.random as nr
 import matplotlib.pyplot as plt
+
 # Defining Class "Organism"
 class organism:
     """Class to hold information about organisms I collect."""
@@ -13,6 +14,7 @@ class organism:
     carrycap = 0
     startpop = 0
     numgen = 0
+
 #defining Organism ind_1
 ind_1 = organism()
 ind_1.common = "Green_Tree_Frog"
@@ -64,11 +66,14 @@ t = int(t)
 K = int(K)
 r = float(r)
 p = int(p)
+
 #setting start
 num = [p]*(t+1)
+
 #logistic growth model equation
 for i in range(t): 
     num[i+1] = num[i]+r*num[i]*(1-num[i]/K)
+
 #Plotting results
 plt.plot(range(t+1),num, 'b')
 plt.xlabel('Generation')
@@ -77,3 +82,5 @@ plt.title('Growth rate: %s, Carrying Capacity = %d' % (r, K))
 plt.axvline(np.argmax(np.diff(num)),  color = 'k' )
 plt.show()
 
+# DB: Not quite as extensive as I had originally laid out, but it's a nice use of a novel
+#     class and it runs well.

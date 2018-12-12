@@ -60,3 +60,6 @@ plt.ylabel('population')
 plt.title('rate of growth: %s, carrying capacity = %d' % (p, cC))
 plt.axvline(np.argmax(np.diff(pop)), color = 'k' )
 plt.show()
+
+# DB: Not quite as extensive as I had originally laid out, but it's a nice use of a novel
+#     class and it runs well.
