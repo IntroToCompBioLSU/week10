@@ -211,3 +211,6 @@ for g in range(gens):	# For loop that creates empty list for each generation.
     print("Generation %d:" % (g+1)); print()
 
     simLandscape.printLandscape()
+
+# DB: These are good comments, but I had hoped to see a bit more in terms of identifying what specific lines or blocks
+#     were doing and how they were doing it. It was a lot of code to get through, though.
