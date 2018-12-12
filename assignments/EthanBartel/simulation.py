@@ -203,3 +203,6 @@ for g in range(gens):
     print("Generation %d:" % (g+1)); print() #print the number of generations 
 
     simLandscape.printLandscape() #Running print landscape
+    
+# DB: These are good comments, but I had hoped to see a bit more in terms of identifying what specific lines or blocks
+#     were doing and how they were doing it. It was a lot of code to get through, though.
