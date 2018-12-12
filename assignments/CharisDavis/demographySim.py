@@ -90,3 +90,5 @@ def disperse(self):
 #Actually do stuff
 myLandscape = landscape()
 myLandscape.printLandscape()
+
+# DB: This is a good start, but most of the demography code seems to be missing. The comments are also a bit sparse.
