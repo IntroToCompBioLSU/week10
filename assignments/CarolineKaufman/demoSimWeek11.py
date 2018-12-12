@@ -218,3 +218,6 @@ for g in range(gens):
     print("Generation %d:" % (g+1)); print()
 
     simLandscape.printLandscape()
+
+# DB: These comments are a good start, but pretty sparse. It would be helpful to see more on the logical parts of the code
+#     that dictate how the simulation itself is structured.
