@@ -210,3 +210,6 @@ for g in range(gens):
 
     simLandscape.printLandscape()	## prints out visualization of the lanscape
 
+
+# DB: Nicely done. The comments are both helpful and numerous. A few of the more complicated sections lack comments,
+#     but they're also not necessarily easy to understand.
